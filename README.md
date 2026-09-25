@@ -123,6 +123,22 @@ import polars as pl
 pl.DataFrame(r.value["tellers"][0]["detail"]["rows"])
 ```
 
+## Install
+
+```bash
+pip install arispec
+```
+
+Python 3.11+. No dependencies, and none planned.
+
+## Tests
+
+```bash
+PYTHONPATH=. python -m unittest discover -s tests
+```
+
+58 tests, no network access, fixtures included in the sdist.
+
 ## Status
 
 0.1.0. The spec parser, the runtime and `trace` are implemented and tested

@@ -25,7 +25,8 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/Solifugus/etl-tools"
+Homepage = "https://github.com/Solifugus/arispec"
+Source = "https://github.com/Solifugus/arispec"
 Roadmap = "https://github.com/Solifugus/etl-tools/blob/master/docs/roadmap.md"
 
 [tool.setuptools.packages.find]
