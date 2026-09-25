@@ -1,0 +1,43 @@
+BRANCH ACTIVITY REGISTER                                PAGE    1
+MIDLAND MUTUAL CREDIT UNION                             RUN 09/16/2026 06:12
+========================================================================
+
+BRANCH  12  NORTHGATE
+
+      ACCOUNT     MEMBER NAME                    POSTED             AMOUNT
+      ----------  ----------------------------   ----------   ------------
+      00141045    SANTOS, GUNNAR                 26-JAN-2026      3,286.09
+      00145765    KOVACS, YUKI                   13-MAY-2026      2,904.18
+      00144366    NAKAMURA, CARMEN               17-FEB-2026      1,423.54
+      00143750    MWANGI, EVA                    21-APR-2026      1,025.67
+      00146732    DELACROIX, WINIFRED            26-APR-2026        867.51
+      00148700    SANTOS, NADIA                  14-JUN-2026    (1,599.71)
+      00143018    NAKAMURA, DIEGO                19-APR-2026      3,476.23
+
+      TOTAL FOR BRANCH                                           11,383.51
+
+BRANCH  59  NORTHGATE
+
+      ACCOUNT     MEMBER NAME                    POSTED             AMOUNT
+      ----------  ----------------------------   ----------   ------------
+      00148006    ABIODUN, WINIFRED              28-SEP-2026      3,969.96
+      00148291    CHAUDHRY, ALICE                23-SEP-2026    (3,404.86)
+      00140639    ABIODUN, PHILIPPE              26-JUN-2026      2,649.31
+      00147611    WHITFIELD, GUNNAR              18-MAR-2026        757.83
+      00146576    ANDERSSON, YUKI                22-AUG-2026      1,557.23
+      00143439    LINDQVIST, YUKI                14-MAY-2026        965.76
+      00145346    KOVACS, BRENDAN                18-MAR-2026      2,302.36
+
+      TOTAL FOR BRANCH                                            8,797.59
+
+BRANCH  19  STONEBRIDGE
+
+      ACCOUNT     MEMBER NAME                    POSTED             AMOUNT
+      ----------  ----------------------------   ----------   ------------
+      00145681    REYES, DIEGO                   18-JAN-2026    (1,988.08)
+      00148962    CHAUDHRY, CARMEN               26-JAN-2026      3,755.82
+      00148081    NAKAMURA, EVA                  17-MAR-2026    (1,285.93)
+      00145823    KOVACS, NADIA                  18-MAR-2026    (3,025.61)
+
+      TOTAL FOR BRANCH                                          (2,543.80)
+

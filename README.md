@@ -139,11 +139,46 @@ PYTHONPATH=. python -m unittest discover -s tests
 
 58 tests, no network access, fixtures included in the sdist.
 
+## Discovery: measure a corpus, propose nothing
+
+```python
+from arispec import discover
+
+p = discover.profile(report_text)
+p["furniture"]["lines"]   # physical line numbers that are page furniture
+p["families"]             # recurring line shapes, most frequent first
+
+c = discover.profile_corpus([{"id": "q1", "text": ...}, ...])
+c["shared"]               # signatures most sources carry
+c["only_one_source"]      # and those only one does
+```
+
+Give it forty quarters of the same report and it tells you where the page
+furniture is, which line shapes recur, and which literals are stable enough to
+anchor on. It **proposes nothing**, deliberately: a profiling layer that also
+guessed would make the guess impossible to evaluate separately from the
+measurement it rests on. Specification generation is the next phase.
+
+Measured against a **planted** answer key — written by the program that wrote
+the reports, from the values it planted, never read back out of the text it
+printed — over 24 branch-activity reports across nine drift axes:
+
+| | result |
+|---|---|
+| furniture precision / recall | **1.000 / 1.000** (190 planted, 190 claimed) |
+| single-page sources | all 4 **refuse with a reason** rather than guess |
+| 12 structureless noise sources | **0** furniture lines claimed |
+
+`import arispec` never pulls this in: the deterministic parser stays free of
+clustering and inference, so a caller with a known specification pays none of
+it.
+
 ## Status
 
-0.1.0. The spec parser, the runtime and `trace` are implemented and tested
-against three fixtures and 58 tests. Spec *inference* from a corpus
-(`ari_discover`) is designed and not yet built.
+0.1.0. The spec parser, the runtime, `trace`, and discovery Phase 0
+(profiling) are implemented — 93 tests over six fixtures plus a 24-source
+corpus with a planted answer key. Specification *generation* from a profile is
+the next phase.
 
 Ported from gBASIC's `stdlib/ari.bas`, with which it shares its spec language
 and its measured behaviour — see
