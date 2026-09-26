@@ -210,7 +210,13 @@ def resolve_field(block, f, ctx):
             return {"val": got["val"], "why": got["why"], "line": row.line,
                     "src": row.text, "at": r["at"] + got["at"],
                     "length": got["length"], "type": ty, "anchors": anchors}
-        if got["why"]:
+        # Only a NON-BLANK span may set the reason. A block usually ends with
+        # a blank line, the recognizer runs on it, and "no-date-found" from
+        # that blank overwrote the "ambiguous-date" the real candidate
+        # produced -- so the diagnostic depended on line order and named the
+        # least informative failure in the block. The vertical resolver
+        # already skips blanks; this is the same rule, one branch over.
+        if got["why"] and not is_blank(r["span"]):
             why = got["why"]
     # Not found anywhere in the block: unknown, never a guess.
     return _miss(why, ty)

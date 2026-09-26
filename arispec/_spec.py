@@ -266,6 +266,44 @@ def _parse_type(lines, start_at, stop_at, name) -> TypeDecl:
                     base=base)
 
 
+_TYPED_LOCATOR = re.compile(r"^(?:first|last)\s+([A-Za-z_][A-Za-z0-9_]*)\s*$")
+
+
+def _check_types(sec: Section, types: dict, path: str) -> None:
+    """A field naming a type nobody declared is refused when the spec is read.
+
+    ``as munny`` used to fall through to the untyped path and hand the field
+    back the raw span **as text**, with nothing raised and no diagnostic -- so
+    a typo in a type name produced an ordinary-looking string where a Decimal
+    was meant, and every downstream total was silently wrong.
+
+    This is the same defect ``using`` had, and upstream fixed it there while
+    leaving it here. Its own note on that fix is the argument: "the remedy for
+    one silent wrong answer was itself a silent wrong answer, which is the
+    worst place for this defect to live."
+
+    ``first <type>``/``last <type>`` carries a type in the *locator*, so it is
+    checked too -- ``first identifier`` is the tempting spelling, because
+    ``identifier`` is a real token kind in :mod:`arispec.discover`, and it is
+    not an ARI type.
+    """
+    for f in list(sec.fields) + list(sec.rows):
+        named = [f.type] if f.type else []
+        m = _TYPED_LOCATOR.match(f.locator)
+        if m and not f.type:
+            named.append(m.group(1))
+        for ty in named:
+            if ty in BUILTIN_TYPES or ty in types:
+                continue
+            raise SpecError(
+                f"{path}.{f.name}: `{ty}` is not a type "
+                f"(builtins: {', '.join(BUILTIN_TYPES)}"
+                + (f"; declared: {', '.join(sorted(types))}" if types else "")
+                + ")")
+    for child in sec.sections:
+        _check_types(child, types, f"{path}.{child.name}")
+
+
 def _check_usings(sec: Section, types: dict, path: str) -> None:
     """A ``using`` that names neither a declared type nor a dialect is refused.
 
@@ -336,4 +374,5 @@ def parse_spec(spec_text: str) -> Spec:
     root = roots[0] if len(roots) == 1 else Section("", sections=roots)
     for sec in roots:
         _check_usings(sec, types, sec.name)
+        _check_types(sec, types, sec.name)
     return Spec(page=page, types=types, root=root)

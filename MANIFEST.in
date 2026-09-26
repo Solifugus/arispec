@@ -3,3 +3,6 @@
 # release. Without this, setuptools takes tests/*.py and leaves the .rpt
 # files behind.
 recursive-include tests *.py *.rpt *.md
+
+include docs/*.md
+include docs/tutorial/*.md
