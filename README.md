@@ -124,13 +124,13 @@ two real defects in the library, which is the argument for doing it this way.
 
 ## Status
 
-0.1.0 — the spec parser, the runtime, `trace`, and discovery Phase 0
-(profiling). 93 tests over six report fixtures plus a 24-source corpus with a
-**planted** answer key: furniture precision and recall are both 1.000, all
-single-page sources refuse with a reason rather than guess, and 12
-structureless sources yield nothing.
+0.1.0 — the spec parser, the runtime, `trace`, and discovery Phases 0 and 1:
+profiling a corpus, and proposing a specification for its dominant repeating
+row family. 121 tests over six report fixtures plus a 24-source corpus with a
+planted answer key.
 
-Specification *generation* from a profile is the next phase.
+Next: sections and pagination (Phase 2), so a proposal nests branches around
+their rows instead of flattening them.
 
 Ported from gBASIC's `stdlib/ari.bas`, with which it shares its spec language
 and its measured behaviour.
